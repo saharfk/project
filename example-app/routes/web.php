@@ -52,7 +52,9 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
 		Route::get('/editprofile', [dc1::class,'editprofile'])->name('editprofile');
 		Route::get('reports',[dc1::class,'reports'])->name('reports');
 		Route::get('/editreports/{id}', [dc1::class,'editreports'])->name('editreports');
-		Route::delete('/deletereports/{id}', [dc1::class,'deletereports'])->name('deletereports');
+		Route::delete('/deletereports/{id}',[dc1::class,'deletereports'])->name('deletereports');
+		Route::get('/addlevels',[dc1::class,'addlevels'])->name('addlevels');
+		Route::post('/updatelevels', [dc1::class,'updatelevels'])->name('updatelevels');
 });
 Route::group(['as'=>'doctor.','prefix'=>'doctor','namespace'=>'Doctor','middleware'=>['auth','doctor']],
 	function(){
