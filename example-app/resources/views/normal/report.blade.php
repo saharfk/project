@@ -1,12 +1,3 @@
-<?php
- // input your data (vaghti 100 behesh midi toolesh be 110 mirese vali)
-$dataPoints = array();
-    $i=1;
-    foreach ($logs as $log) {
-         array_push ( $dataPoints ,array("y" => $log->score, "label" => $i) ) ;
-         $i++;
-    }
-?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -28,25 +19,6 @@ $dataPoints = array();
         <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
-         <script>
-window.onload = function () {
- 
-var chart = new CanvasJS.Chart("chartContainer", {
-    title: {
-        text: ""
-    },
-    axisY: {
-        title: "SCORE"
-    },
-    data: [{
-        type: "line",
-        dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-    }]
-});
-chart.render();
- 
-}
-</script>
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -102,15 +74,14 @@ chart.render();
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('normal.report') }}">
-                       <i class="ni ni-chat-round text-blue"></i> {{ __('Reports') }}
+                       <i class="ni ni-chat-round text-blue"></i> {{ __('Report') }}
                     </a>
-                </li> 
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('normal.messages') }}">
                        <i class="ni ni-email-83 text-blue"></i> {{ __('Messages') }}
                     </a>
                 </li>
-
             </ul>
         </div>
     </div>
@@ -120,89 +91,64 @@ chart.render();
         
         <div class="main-content">
             @include('normal.nav')
-    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-    <div class="container-fluid">
-        <div class="header-body">
-            <!-- Card stats -->
-            <div class="row">
-                
-               
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="container-fluid mt--7">
-        <div class="row">     
+@section('content')
+    @include('users.partials.header', [
+        'title' => __('Hello') . ' '. auth()->user()->name.' '.auth()->user()->familyname.'!',
+    ])
+
+<div class="container-fluid mt--7">
+        <div class="row">
+            
             <div class="col-xl-8 order-xl-1">
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
-                            <h3 class="mb-0">Game logs</h3>
+                            <h3 class="mb-0">{{ __('Make a report') }}</h3>
                         </div>
                     </div>
-        <div class="row">
-            <div class="col-xl-12 mb-12 mb-xl-0">
-                <div class="card bg-gradient-default shadow">
-                    <div class="card-header bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
+                    <div class="card-body">
+                         <form method="POST" action="{{route('normal.makereport')}}" autocomplete="off">
+                            @csrf       
+                            @if (session('successMsg2'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('successMsg2') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif          
+                            <div class="pl-lg-4">
+                                <div class="form-group{{ $errors->has('text') ? ' has-danger' : '' }}">
+                                    
+                                    <textarea name="text" id="input-text" class="form-control form-control-alternative{{ $errors->has('text') ? ' is-invalid' : '' }}" placeholder="{{ __('Text') }}" required autofocus></textarea>
+
+                                    @if ($errors->has('text'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('text') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                </div>
                             </div>
-                            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                        </div>
+                        </form>
                     </div>
                 </div>
-        <div class="row mt-5">
-            <div class="col-xl-12 mb-12 mb-xl-0">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h3 class="mb-0">Last 20 games</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Levels</th>
-                                    <th scope="col">Score</th>   
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($logs as $log)
-                                <tr>
-                                    <td>
-                                        {{$log->created_at}}
-                                    </td>
-                                    <td>
-                                        {{$log->levels}}
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <span class="mr-2">{{$log->score}}%</span>
-                                            <div>
-                                                <div class="progress">
-                                                <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="{{$log->score}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$log->score}}%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach    
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>        
+            </div>
         </div>
-        
     </div>
-    </div>
-    <br><br><br>
+        <script type="text/javascript">
+        const tx = document.getElementsByTagName('textarea');
+        for (let i = 0; i < tx.length; i++) {
+            tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
+            tx[i].addEventListener("input", OnInput, false);
+        }
+        function OnInput() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        }
+    </script>
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         
@@ -210,6 +156,5 @@ chart.render();
         
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </body>
 </html>

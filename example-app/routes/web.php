@@ -68,8 +68,15 @@ Route::group(['as'=>'doctor.','prefix'=>'doctor','namespace'=>'Doctor','middlewa
 });
 
 Route::group(['as'=>'normal.','prefix'=>'normal','namespace'=>'Normal','middleware'=>['auth','normal']],
-	function(){Route::get('dashboard',[dc3::class,'index'])->name('dashboard');});
-
+	function(){
+		Route::get('dashboard',[dc3::class,'index'])->name('dashboard');
+		Route::get('/editprofile', [dc3::class,'editprofile'])->name('editprofile');
+		Route::get('/report', [dc3::class,'report'])->name('report');
+		Route::get('/messages', [dc3::class,'messages'])->name('messages');
+		Route::post('/makereport', [dc3::class,'makereport'])->name('makereport');
+		Route::get('/viewnotification/{id}', [dc3::class,'viewnotification'])->name('viewnotification');
+		Route::delete('/deletenotification/{id}',[dc3::class,'deletenotification'])->name('deletenotification');
+});
 
 
 

@@ -1,12 +1,3 @@
-<?php
- // input your data (vaghti 100 behesh midi toolesh be 110 mirese vali)
-$dataPoints = array();
-    $i=1;
-    foreach ($logs as $log) {
-         array_push ( $dataPoints ,array("y" => $log->score, "label" => $i) ) ;
-         $i++;
-    }
-?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -28,25 +19,7 @@ $dataPoints = array();
         <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
-         <script>
-window.onload = function () {
- 
-var chart = new CanvasJS.Chart("chartContainer", {
-    title: {
-        text: ""
-    },
-    axisY: {
-        title: "SCORE"
-    },
-    data: [{
-        type: "line",
-        dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-    }]
-});
-chart.render();
- 
-}
-</script>
+         
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -110,7 +83,6 @@ chart.render();
                        <i class="ni ni-email-83 text-blue"></i> {{ __('Messages') }}
                     </a>
                 </li>
-
             </ul>
         </div>
     </div>
@@ -137,69 +109,44 @@ chart.render();
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
-                            <h3 class="mb-0">Game logs</h3>
+                            <h3 class="mb-0">Messages</h3>
                         </div>
                     </div>
         <div class="row">
             <div class="col-xl-12 mb-12 mb-xl-0">
-                <div class="card bg-gradient-default shadow">
-                    <div class="card-header bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
-                            </div>
-                            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                        </div>
-                    </div>
-                </div>
-        <div class="row mt-5">
-            <div class="col-xl-12 mb-12 mb-xl-0">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h3 class="mb-0">Last 20 games</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
+   
+       
+         <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Summery</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (session('successMsg'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('successMsg') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+                                @foreach($notifications as $notification)
                                 <tr>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Levels</th>
-                                    <th scope="col">Score</th>   
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($logs as $log)
-                                <tr>
+                                    <td><?php $x=$notification -> text;echo substr($x, 0, 21); ?></td>
+
                                     <td>
-                                        {{$log->created_at}}
-                                    </td>
-                                    <td>
-                                        {{$log->levels}}
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <span class="mr-2">{{$log->score}}%</span>
-                                            <div>
-                                                <div class="progress">
-                                                <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="{{$log->score}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$log->score}}%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <a href="{{route('normal.viewnotification',$notification->id)}}" style="margin-right: 1em;"><i class="ni ni-settings-gear-65"></i></a>
                                     </td>
                                 </tr>
-                                @endforeach    
-                            </tbody>
-                        </table>
-                    </div>
+                                @endforeach              
+                        </tbody>
+                    </table>
+                    <br>
+                    <div style="margin-left:2em; ">{{$notifications->links()}}</div>
                 </div>
-            </div>        
-        </div>
-        
     </div>
     </div>
     <br><br><br>
