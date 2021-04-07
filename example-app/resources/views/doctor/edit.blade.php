@@ -176,7 +176,7 @@ chart.render();
                                             <span class="mr-2">{{$log->score}}%</span>
                                             <div>
                                                 <div class="progress">
-                                                <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="{{$log->score}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$log->score}}%;"></div>
+                                                <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="{{$log->score}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$log->score}}%;"></div>
                                                 </div>
                                             </div>
                                         </div>
