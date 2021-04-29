@@ -9,7 +9,7 @@
 
         <title>{{ config('app.name', 'Argon Dashboard') }}</title>
         <!-- Favicon -->
-        <link href="{{ asset('argon') }}/img/brand/favicon.png" rel="icon" type="image/png">
+        <link href="{{ asset('argon') }}/img/icons/favicon.png" rel="icon" type="image/png">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
         <!-- Extra details for Live View on GitHub Pages -->
@@ -27,10 +27,6 @@
             </form>
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
-        <!-- Brand -->
-        <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
-        </a>
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
             <!-- Collapse header -->
@@ -63,6 +59,11 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('welcome') }}">
+                        <i class="ni ni-world text-primary"></i> {{ __('Website') }}
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('doctor.dashboard') }}">
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
                     </a>
@@ -74,7 +75,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('doctor.report') }}">
-                       <i class="ni ni-chat-round text-blue"></i> {{ __('Report') }}
+                       <i class="ni ni-chat-round text-blue"></i> {{ __('Reports') }}
                     </a>
                 </li>
   

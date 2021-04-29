@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Report;
+use App\Models\Contacts;
 
 class DashboardController extends Controller
 {
@@ -42,20 +43,33 @@ class DashboardController extends Controller
     	return redirect(route('admin.dashboard')) -> with('successMsg','The user was deleted');
     }
     public function reports(){
-    	$reports= Report::select('name','familyname','text','reports.id')->leftJoin('users', 'users.id', '=', 'reports.user_id')->paginate(5);
-		return view('admin.reports',compact('reports'));
+        $reports= Report::select('name','familyname','text','reports.id')->leftJoin('users', 'users.id', '=', 'reports.user_id')->paginate(5);
+        return view('admin.reports',compact('reports'));
+    }
+    public function contacts(){
+        $reports= Contacts::paginate(5);
+        return view('admin.contacts',compact('reports'));
     }
     public function editreports($id){
-     	$report= Report::select('name','familyname','text','reports.id')->leftJoin('users', 'users.id', '=', 'reports.user_id')->find($id);
-    	return view('admin.editreports' , compact('report'));
+        $report= Report::select('name','familyname','text','reports.id')->leftJoin('users', 'users.id', '=', 'reports.user_id')->find($id);
+        return view('admin.editreports' , compact('report'));
+    }
+    public function editcontacts($id){
+        $report= Contacts::find($id);
+        return view('admin.editcontacts' , compact('report'));
     }
     public function deletereports($id){
         $user= Report::find($id)-> delete();
-        return redirect(route('admin.reports')) -> with('successMsg','The report was deleted');
+        return redirect(route('admin.reports')) -> with('successMsg','The contact was deleted');
+    }
+    public function deletecontacts($id){
+        $user= Contacts::find($id)-> delete();
+        return redirect(route('admin.contacts')) -> with('successMsg','The contact was deleted');
     }
     public function addlevels(){
         return view('admin.addlevels');
     }
+
     public function updatelevels(Request $request){
 
     $folderName = "../public/argon/levels/level-". $request -> level ."/". $request -> name;
