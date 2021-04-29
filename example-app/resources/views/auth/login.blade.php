@@ -9,8 +9,9 @@
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
-                            
+                            Login
                         </div>
+                        
                         <form role="form" method="POST" action="{{ route('login') }}">
                             @csrf
 
@@ -50,22 +51,23 @@
                                 <button type="submit" class="btn btn-primary my-4">{{ __('Sign in') }}</button>
                             </div>
                         </form>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-6">
-                        @if (Route::has('password.request'))
+                        <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="{{ route('welcome') }}" class="text-light">
+                            <small>{{ __('Home') }}</small>
+                        </a></li>
+                        <li class="nav-item">@if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}" class="text-light">
                                 <small>{{ __('Forgot password?') }}</small>
                             </a>
-                        @endif
-                    </div>
-                    <div class="col-6 text-right">
-                        <a href="{{ route('register') }}" class="text-light">
+                        @endif</li>
+                        <li class="nav-item"><a href="{{ route('register') }}" class="text-light">
                             <small>{{ __('Create new account') }}</small>
-                        </a>
+                        </a></li>
+                    </ul>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>
