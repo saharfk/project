@@ -183,7 +183,8 @@
         <img src="../public/front/assets/footerLogo.png" alt="" width="300" height="210">
       </div>
     </div>
-    <div class="container">
+
+     <div class="container">
       <div class="row">
         <div class="col-12 col-md-12">
           <p style="text-align: center">Copyright &copy;
