@@ -71,8 +71,14 @@ class DashboardController extends Controller
     }
 
     public function updatelevels(Request $request){
-
-    $folderName = "../public/argon/levels/level-". $request -> level ."/". $request -> name;
+        //$request -> name
+    $folderName = "../public/argon/levels/level-". $request -> level;
+    $dirs = array_filter(glob($folderName . '/*' , GLOB_ONLYDIR), 'is_dir');
+    natsort($dirs);
+    $lastf=explode("/",end($dirs));
+    $lastf=end($lastf);
+    $num= substr($lastf,2);    
+    $folderName=$folderName."/f-".($num+1);
     if (!file_exists($folderName)) {
         mkdir($folderName);
     }else {
@@ -94,12 +100,18 @@ class DashboardController extends Controller
                 $fileDestination1 = $folderName.'/'.$fileNameNew1;
                 move_uploaded_file($fileTmpName1, $fileDestination1);
             }else{
+                array_map('unlink', glob("$folderName/*.*"));
+                rmdir($folderName);
                return back()-> with('pic1',"your file is too big!");
             }
         }else{
+                array_map('unlink', glob("$folderName/*.*"));
+                rmdir($folderName);
                 return back()-> with('pic1',"there was an error uploading your file!");
         }       
     }else{
+        array_map('unlink', glob("$folderName/*.*"));
+        rmdir($folderName);
         return back()-> with('pic1', "you cannot upload files of this type!");
     }
      $file2 = $_FILES['file2'];
@@ -117,12 +129,18 @@ class DashboardController extends Controller
                 $fileDestination2 = $folderName.'/'.$fileNameNew2;
                 move_uploaded_file($fileTmpName2, $fileDestination2);
             }else{
+                array_map('unlink', glob("$folderName/*.*"));
+                rmdir($folderName);
                 return back()-> with('pic2', "your file is too big!");
             }
         }else{
+            array_map('unlink', glob("$folderName/*.*"));
+            rmdir($folderName);
                 return back()-> with('pic2', "there was an error uploading your file!");
         }       
     }else{
+        array_map('unlink', glob("$folderName/*.*"));
+        rmdir($folderName);
         return back()-> with('pic2', "you cannot upload files of this type!");
     }  
     $file3 = $_FILES['file3'];
@@ -140,12 +158,18 @@ class DashboardController extends Controller
                 $fileDestination3 = $folderName.'/'.$fileNameNew3;
                 move_uploaded_file($fileTmpName3, $fileDestination3);
             }else{
+                array_map('unlink', glob("$folderName/*.*"));
+                rmdir($folderName);
                 return back()-> with('pic3', "your file is too big!");
             }
         }else{
+                array_map('unlink', glob("$folderName/*.*"));
+                rmdir($folderName);
                 return back()-> with('pic3', "there was an error uploading your file!");
         }       
     }else{
+        array_map('unlink', glob("$folderName/*.*"));
+        rmdir($folderName);
         return back()-> with('pic3', "you cannot upload files of this type!");
     }  
 

@@ -160,19 +160,6 @@
                                 </div>
                             @endif
                             <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Folder name') }}</label>
-                                    <input type="text" name="name" id="name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="" required >
-
-                                    @if (session('nameError'))
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('nameError') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                    @endif
-                                </div>
                                 <div class="form-group{{ $errors->has('level') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-name">{{ __('Choose level') }}</label><br>
                                 <input type="radio" name="level" value="1" class="form-control-alternative" style="margin-right:0.1em" checked><label style="margin-right:0.5em">1</label>
