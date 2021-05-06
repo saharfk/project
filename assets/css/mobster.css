@@ -2899,3 +2899,31 @@ hr {
     padding: 20px 0 0 40px;
   }
 }
+
+/* game classes */
+html, body {
+  height: 100%;
+}
+.full-height{
+  height: 100%;
+  border-width: 20px 20px 20px 20px;
+  border-color: #3D58F3;
+  border-style: solid;
+  background-color: #D3FBFC;
+  padding: 10px;
+}
+.h-game{
+  height: 15%;
+}
+.header-game{
+  border-width: 2px 2px 2px 2px;
+  border-color: #3D58F3;
+  border-style: solid; 
+  border-radius:10px;
+  margin: 10px;
+}
+.hr-game{
+  background-color : #3D58F3 ;
+  border: 5px solid #3D58F3;
+  border-radius:5px;
+}
