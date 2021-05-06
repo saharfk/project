@@ -151,7 +151,7 @@ The Video on this page gives an overview of VEGLECTHERAPY in a couple of minutes
                     <a class="fg-gray fs-small" href="https://github.com/parinazmellatdoust" target="_blank" title="GitHub profile">
                         <span class="fab fa-github" aria-hidden="true"></span>
                     </a>
-                    <a class="fg-gray fs-small" href="https://codepen.io/negin-titanium" target="_blank" title="CodePen profile">
+                    <a class="fg-gray fs-small" href="https://codepen.io/parinazmellatdoust" target="_blank" title="CodePen profile">
                         <span class="fab fa-codepen" aria-hidden="true"></span>
                     </a>
 
@@ -225,6 +225,14 @@ The Video on this page gives an overview of VEGLECTHERAPY in a couple of minutes
       </div>
       <div class="col-md-6 col-lg-4">
         <img src="../public/front/assets/footerLogo.png" alt="" width="300" height="210">
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-12">
+          <p style="text-align: center">Copyright &copy;
+            All rights reserved</p>
+        </div>
       </div>
     </div>
   </div>
