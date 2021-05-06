@@ -268,6 +268,14 @@ use Illuminate\Support\Facades\Auth;
         </div>
       </div>
     </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-12">
+          <p style="text-align: center">Copyright &copy;
+            All rights reserved</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="../public/front/assets/js/jquery-3.5.1.min.js"></script>
