@@ -7,9 +7,9 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Argon Dashboard') }}</title>
+        <title>VEGLECTHERAPY</title>
         <!-- Favicon -->
-        <link href="{{ asset('argon') }}/img/brand/favicon.png" rel="icon" type="image/png">
+        <link href="{{ asset('argon') }}/img/icons/favicon.png" rel="icon" type="image/png">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
         <!-- Extra details for Live View on GitHub Pages -->
@@ -37,21 +37,19 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
-<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main" >
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     <div class="container-fluid">
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
-        </a>
+
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
             <!-- Collapse header -->
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-6 collapse-brand">
-                        <a href="{{ route('home') }}">
-                            <img src="{{ asset('argon') }}/img/brand/blue.png">
-                        </a>
                     </div>
                     <div class="col-6 collapse-close">
                         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
@@ -61,19 +59,13 @@
                     </div>
                 </div>
             </div>
-            <!-- Form -->
-            <form class="mt-4 mb-3 d-md-none">
-                <div class="input-group input-group-rounded input-group-merge">
-                    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="{{ __('Search') }}" aria-label="Search">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <span class="fa fa-search"></span>
-                        </div>
-                    </div>
-                </div>
-            </form>
             <!-- Navigation -->
             <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('welcome') }}">
+                        <i class="ni ni-world text-primary"></i> {{ __('Website') }}
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.dashboard') }}">
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
@@ -92,6 +84,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.addlevels') }}">
                        <i class="ni ni-album-2 text-blue"></i> {{ __('Add level') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.contacts') }}">
+                        <i class="ni ni-archive-2 text-blue"></i> {{ __('Contacts') }}
                     </a>
                 </li>
             </ul>
@@ -154,19 +151,6 @@
                                 </div>
                             @endif
                             <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Folder name') }}</label>
-                                    <input type="text" name="name" id="name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="" required >
-
-                                    @if (session('nameError'))
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('nameError') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                    @endif
-                                </div>
                                 <div class="form-group{{ $errors->has('level') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-name">{{ __('Choose level') }}</label><br>
                                 <input type="radio" name="level" value="1" class="form-control-alternative" style="margin-right:0.1em" checked><label style="margin-right:0.5em">1</label>
