@@ -2915,6 +2915,15 @@ html, body {
 .h-game{
   height: 15%;
 }
+.textQ{
+  font-family:'Roboto', sans-serif;
+  font-size: 25px;
+  color: #000066;
+  text-align: center;
+  margin: auto;
+  padding: 15px;
+  /* margin-top: 12px; */
+}
 .O-game{
   height: 85%;
   margin: 10px;
@@ -3025,6 +3034,12 @@ html, body {
   }
   .laptopQ{
     display: none;
+  }
+  .textQ{
+    font-size: 15px;
+  }
+  .h-game{
+    margin-bottom: 30px;
   }
 }
 
