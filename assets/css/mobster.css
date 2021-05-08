@@ -2999,6 +2999,9 @@ html, body {
     flex: 100%;
     column-width: 300px;
   }
+  .rows{
+    margin:0px;
+  }
   .column img {
     margin: 15px;
     vertical-align: middle;
