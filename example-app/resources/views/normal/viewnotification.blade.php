@@ -54,6 +54,11 @@
                         <i class="ni ni-world text-primary"></i> {{ __('Website') }}
                     </a>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('welcome') }}">
+                        <i class="ni ni-controller text-primary"></i> {{ __('Game') }}
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('normal.dashboard') }}">
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
