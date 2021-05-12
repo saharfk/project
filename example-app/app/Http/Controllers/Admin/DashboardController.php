@@ -14,17 +14,14 @@ class DashboardController extends Controller
     	$users= User::where('access', '!=' , 0)->paginate(5);
 		return view('admin.dashboard',compact('users'));
 	}
-
 	public function edit($id){
      	$user= User::find($id);
      	$doctors= User::where('access', '=' , 1)->paginate(100);
     	return view('admin.edit' , compact('user') , compact('doctors'));
     }
-
     public function editprofile(){
     	return view('admin.editprofile');
     }
-
      public function update(Request $request , $id){
     	$user= User::find($id);
     	
@@ -37,7 +34,6 @@ class DashboardController extends Controller
     	$user -> save();
     	return redirect(route('admin.dashboard')) -> with('successMsg','The user was updated');
     }
-
     public function delete($id){
      	$user= User::find($id)-> delete();
     	return redirect(route('admin.dashboard')) -> with('successMsg','The user was deleted');
@@ -71,7 +67,6 @@ class DashboardController extends Controller
     }
 
     public function updatelevels(Request $request){
-        //$request -> name
     $folderName = "../public/argon/levels/level-". $request -> level;
     $dirs = array_filter(glob($folderName . '/*' , GLOB_ONLYDIR), 'is_dir');
     natsort($dirs);
@@ -172,13 +167,6 @@ class DashboardController extends Controller
         rmdir($folderName);
         return back()-> with('pic3', "you cannot upload files of this type!");
     }  
-
-
-
-
         return back()-> with('successMsg','updated');
     }
-
-   
-
 }

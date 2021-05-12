@@ -135,9 +135,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (session('successMsg'))
-                                aaaaaaaaaaaaa
-                            @endif
                                 @foreach($users as $user)
                                 <tr>
                                     <td>{{$user -> name}} {{$user -> familyname}}</td>

@@ -106,7 +106,7 @@
             <li class="list-item">after the admin promotes you to the doctors position you can tap the report button on the left side of your dashboard<br>
             and send the usernames of your patients to the admin</li>
             <li class="list-item">then, you must wait until the admin adds the patient to your dashboard.</li>
-            <p><br><b>if you want to know how to Specifi level to your patient click <a href="{{ route('howToPlayGuide') }}">here</a></b></p>
+            <p><br><b>if you want to know how to Specific level to your patient click <a href="{{ route('howToPlayGuide') }}">here</a></b></p>
             </ul>
         </div>
       </div>
