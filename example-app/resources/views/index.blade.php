@@ -109,7 +109,7 @@ use Illuminate\Support\Facades\Auth;
         <div class="row">
           <div class="col-lg-5 py-3">
             <div class="img-place mobile-preview shadow wow zoomIn">
-              <img src="../public/front/assets/img/app_preview_3.png" alt="">
+              <img src="../public/front/assets/img/doctor.png" alt="">
             </div>
           </div>
           <div class="col-lg-6 offset-lg-1 py-3 mt-lg-5 wow fadeInUp">
@@ -142,8 +142,8 @@ use Illuminate\Support\Facades\Auth;
             <a href="{{ route('login') }}" class="btn btn-outline-primary rounded-pill">Sign up / Sign in</a>
           </div>
           <div class="col-lg-5 py-3">
-            <div class="img-place mobile-preview shadow wow zoomIn">
-              <img src="../public/front/assets/img/app_preview_3.png" alt="">
+            <div class="img-place mobile-preview shadow wow zoomIn" style="height: 100%">
+              <img src="../public/front/assets/img/normal.png" alt="" style="height: 100%">
             </div>
           </div>
         </div>
@@ -155,7 +155,7 @@ use Illuminate\Support\Facades\Auth;
 
   <div class="page-section bg-dark fg-white">
     <div class="container">
-      <h1 class="text-center">Why Choose Mobster</h1>
+      <h1 class="text-center">Why Choose Us</h1>
 
       <div class="row justify-content-center mt-5">
         <div class="col-md-6 col-lg-6 py-3">
