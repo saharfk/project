@@ -117,6 +117,8 @@ Route::group(['as'=>'normal.','prefix'=>'normal','namespace'=>'Normal','middlewa
 		Route::post('/makereport', [dc3::class,'makereport'])->name('makereport');
 		Route::get('/viewnotification/{id}', [dc3::class,'viewnotification'])->name('viewnotification');
 		Route::delete('/deletenotification/{id}',[dc3::class,'deletenotification'])->name('deletenotification');
+		Route::get('/game',[dc3::class,'game'])->name('game');
+		Route::post('/submitgame', [dc3::class,'submitgame'])->name('submitgame');
 });
 
 

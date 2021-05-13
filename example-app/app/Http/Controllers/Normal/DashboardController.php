@@ -12,7 +12,7 @@ use App\Models\User_log;
 class DashboardController extends Controller
 {
     public function index(){
-    	$logs= User_log::where('user_id', '=' ,  auth()->user()->id)->orderBy('id', 'desc')->paginate(20);
+    	$logs= User_log::where('user_id', '=' ,  auth()->user()->id)->orderBy('id', 'asc')->paginate(20);
 		return view('normal.dashboard' ,compact('logs') );
 	}
 	public function messages(){
@@ -43,5 +43,44 @@ class DashboardController extends Controller
     public function deletenotification($id){
         $user= User_notification::find($id)-> delete();
         return redirect(route('normal.messages')) ->  with('successMsg','The notification was deleted');
+    }
+    public function game(){
+        $x=explode("-",auth()->user()->levels);
+        $array = [];
+        for ($i = $x[0]; $i <= $x[1]; $i++) {
+            $folderName= "../public/argon/levels/level-".$i;
+            $dirs = array_filter(glob($folderName . '/*' , GLOB_ONLYDIR), 'is_dir');
+            natsort($dirs);
+            foreach ($dirs as $key) {
+               $array[] =[$key,$i];
+            }
+        }
+        shuffle($array);
+        $a=[];
+        for ($i = 0; $i <10; $i++) {
+            $a[] =$array[$i];
+        }
+        $_SESSION["list"] = $a;
+        $_SESSION["score"] =0;
+        return view('normal.game');
+    }
+    public function submitgame(Request $request){
+        $_SESSION["score"] = $request->score;
+        if (str_contains($request->img,"2")) {
+            $_SESSION["score"] +=10;
+        }
+        if ($request->list=="[]") {
+           $log= new User_log;
+           $log -> user_id = auth()->user()->id;
+           $log -> levels = auth()->user()->levels;
+           $log -> score= $_SESSION["score"];
+           $log -> save();
+           $logs= User_log::where('user_id', '=' ,  auth()->user()->id)->orderBy('id', 'asc')->paginate(20);
+           return redirect(route('normal.dashboard',compact('logs')));
+        }
+        $tmp= $request->list;
+        $tmp=str_replace("'",'"',$tmp);
+        $_SESSION["list"] = json_decode($tmp, true); 
+        return view('normal.game');
     }
 }

@@ -56,7 +56,7 @@
                     </a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="{{ route('welcome') }}">
+                    <a class="nav-link" href="{{ route('normal.game') }}">
                         <i class="ni ni-controller text-primary"></i> {{ __('Game') }}
                     </a>
                 </li>
