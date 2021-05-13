@@ -83,7 +83,7 @@ chart.render();
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('welcome') }}">
+                    <a class="nav-link" href="{{ route('normal.game') }}">
                         <i class="ni ni-controller text-primary"></i> {{ __('Game') }}
                     </a>
                 </li>
@@ -161,6 +161,14 @@ chart.render();
                     </div>
                     <div class="table-responsive">
                         <!-- Projects table -->
+                        <?php 
+                        $l=[];
+                        foreach($logs as $log){
+                            $l[]=$log;
+                        }
+                         $l=array_reverse($l);
+                         ?>
+                        
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
@@ -170,7 +178,7 @@ chart.render();
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($logs as $log)
+                                @foreach($l as $log)
                                 <tr>
                                     <td>
                                         {{$log->created_at}}
