@@ -9,6 +9,9 @@
             <div class="col-lg-6 col-md-8">
                 <div class="card bg-secondary shadow border-0">      
                     <div class="card-body px-lg-5 py-lg-5">
+                        <div class="text-center text-muted mb-4">
+                            Sign up
+                        </div>
                         <form role="form" method="POST" action="{{ route('register') }}">
                             @csrf
 
@@ -80,6 +83,11 @@
                                 <button type="submit" class="btn btn-primary mt-4">{{ __('Create account') }}</button>
                             </div>
                         </form>
+                        <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="{{ route('welcome') }}" class="text-light">
+                            <small>{{ __('Home') }}</small>
+                        </a></li>
+                    </ul>
                     </div>
                 </div>
             </div>

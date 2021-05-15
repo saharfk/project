@@ -1,9 +1,12 @@
 <?php
-
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as dc1;
 use App\Http\Controllers\Doctor\DashboardController as dc2;
 use App\Http\Controllers\Normal\DashboardController as dc3;
+use App\Models\Contacts;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +19,44 @@ use App\Http\Controllers\Normal\DashboardController as dc3;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 })->name('welcome');
 
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
+Route::post('/addcontact', function (Request $request) {
+    	$contact= new Contacts;
+    	$contact -> name= $request -> name;
+    	$contact -> email= $request -> email;
+    	$contact -> text= $request -> text;
+    	if (isset($request ->phone)) {
+          $contact -> phone= $request -> phone;
+        }else{
+        	$contact -> phone="";
+        }
+    	$contact -> save();
+    	return view('contact');
+})->name('addcontact');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/DoctorsGuide', function () {
+    return view('DoctorsGuide');
+})->name('DoctorsGuide');
+
+Route::get('/PatientsGuide', function () {
+    return view('PatientsGuide');
+})->name('PatientsGuide');
+
+Route::get('/howToPlayGuide', function () {
+    return view('howToPlayGuide');
+})->name('howToPlayGuide');
+
+Route::get('/home', [cc::class, 'index'])->name('home');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -52,7 +90,12 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
 		Route::get('/editprofile', [dc1::class,'editprofile'])->name('editprofile');
 		Route::get('reports',[dc1::class,'reports'])->name('reports');
 		Route::get('/editreports/{id}', [dc1::class,'editreports'])->name('editreports');
-		Route::delete('/deletereports/{id}', [dc1::class,'deletereports'])->name('deletereports');
+		Route::get('contacts',[dc1::class,'contacts'])->name('contacts');
+		Route::get('/editcontacts/{id}', [dc1::class,'editcontacts'])->name('editcontacts');
+		Route::delete('/deletecontacts/{id}',[dc1::class,'deletecontacts'])->name('deletecontacts');
+		Route::delete('/deletereports/{id}',[dc1::class,'deletereports'])->name('deletereports');
+		Route::get('/addlevels',[dc1::class,'addlevels'])->name('addlevels');
+		Route::post('/updatelevels', [dc1::class,'updatelevels'])->name('updatelevels');
 });
 Route::group(['as'=>'doctor.','prefix'=>'doctor','namespace'=>'Doctor','middleware'=>['auth','doctor']],
 	function(){
@@ -66,8 +109,17 @@ Route::group(['as'=>'doctor.','prefix'=>'doctor','namespace'=>'Doctor','middlewa
 });
 
 Route::group(['as'=>'normal.','prefix'=>'normal','namespace'=>'Normal','middleware'=>['auth','normal']],
-	function(){Route::get('dashboard',[dc3::class,'index'])->name('dashboard');});
-
+	function(){
+		Route::get('dashboard',[dc3::class,'index'])->name('dashboard');
+		Route::get('/editprofile', [dc3::class,'editprofile'])->name('editprofile');
+		Route::get('/report', [dc3::class,'report'])->name('report');
+		Route::get('/messages', [dc3::class,'messages'])->name('messages');
+		Route::post('/makereport', [dc3::class,'makereport'])->name('makereport');
+		Route::get('/viewnotification/{id}', [dc3::class,'viewnotification'])->name('viewnotification');
+		Route::delete('/deletenotification/{id}',[dc3::class,'deletenotification'])->name('deletenotification');
+		Route::get('/game',[dc3::class,'game'])->name('game');
+		Route::post('/submitgame', [dc3::class,'submitgame'])->name('submitgame');
+});
 
 
 

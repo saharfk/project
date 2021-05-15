@@ -23,7 +23,6 @@ class DashboardController extends Controller
     public function editprofile(){
     	return view('doctor.editprofile');
     }
-
     public function updatelevels(Request $request , $id ){
     	$user= User::find($id);
         $count=0;$string='';       
@@ -80,7 +79,4 @@ class DashboardController extends Controller
     	return back()-> with('successMsg2','done');
 
     }
-
-
-
 }
