@@ -14,10 +14,6 @@ if ($info[1]==4 || $info[1]==5) {
  array_pop ($dirs);
 }
 shuffle($dirs);
-$flag=1;
-if (count($_SESSION['list'])==9) {
-  $flag=0;
-}
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +55,7 @@ if (count($_SESSION['list'])==9) {
 
   <nav class="navbar navbar-expand-lg navbar-light navbar-floating">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="{{ route('welcome') }}">
         <img src="../../public/front/assets/favicon.png" alt="" width="100" height="70">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler"
@@ -70,10 +66,10 @@ if (count($_SESSION['list'])==9) {
       <div class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav ml-lg-5 mt-3 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="{{ route('welcome') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link" href="{{ route('about') }}">About</a>
           </li>
            <?php 
           if (Auth::check() && auth()->user()->access == 0) {
@@ -85,7 +81,7 @@ if (count($_SESSION['list'])==9) {
           }
           ?>
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
           </li>
         </ul>
         <div class="ml-auto my-2 my-lg-0">
@@ -115,86 +111,92 @@ if (count($_SESSION['list'])==9) {
     </div>
   </div>
   <?php if ($info[1] == 1 || $info[1] == 2 || $info[1] == 3 ): ?>
-    <div class="full-height mouse-here" >
-    <!-- points , level number , question -->
-    <div class="row h-game justify-content-center">
-      <div class="col-md-3 col-lg-2 header-game">
-        <p class="textQ"><strong>Score : <?= $_SESSION["score"] ?></strong></p>
-      </div>
-      <div class="col-md-3 col-lg-2 header-game">
-        <p class="textQ"><strong>Level : <?= $info[1]?></strong></p>
-      </div>
-      <div class="col-md-6 col-lg-7 header-game">
-        <p class="textQ"><strong>Find the similar animal</strong></p>
-      </div>
-    </div>
-    <!-- hr line -->
-    <hr class="hr-game">
-    <!-- main structure -->
-    <div class="row O-game">
-        <div class="col-3 phoneQ" style="margin-top: 5%; margin-left:5%;">
-            <img class="imageQ borderimage" src="../<?= $info[0]?>/<?= $correct ?>">           
-         </div>
-         <hr class="hr-game hrphoneQ" style="border: 2px solid #3D58F3; opacity: 0.5;">
-       <div class="col-8">
-         <div class="rows photos">
-            <?php if ($flag==0): ?>
-            <form method="POST" action="{{route('normal.submitgame')}}">
-              @csrf 
-               <input type="hidden" name="score" value="<?=$_SESSION['score']?>">
-               <?php $tmp=json_encode($_SESSION['list']);
-                $tmp=str_replace('"',"'",$tmp);
-                ?>
-               <input type="hidden" name="list" value="<?=$tmp?>">
-                
-              <input type="checkbox" id="<?= $dirs[0] ?>" name="img" value="<?= $dirs[0] ?>">
-              <label for="<?= $dirs[0] ?>"> <?= $dirs[0] ?></label><br>
-              <input type="checkbox" id="<?= $dirs[1] ?>" name="img" value="<?= $dirs[1] ?>">
-              <label for="<?= $dirs[1] ?>"> <?= $dirs[1] ?></label><br>
-              <input type="checkbox" id="<?= $dirs[2] ?>" name="img" value="<?= $dirs[2] ?>">
-              <label for="<?= $dirs[2] ?>"> <?= $dirs[2] ?></label><br>
-              <input type="submit" value="Submit">
-            </form>
-            <?php endif; ?>
-            <?php if ($flag==1): ?>
-            <form method="POST" action="{{route('normal.submitgame')}}" autofocus>
-              @csrf 
-               <input type="hidden" name="score" value="<?=$_SESSION['score']?>">
-               <?php $tmp=json_encode($_SESSION['list']);
-                $tmp=str_replace('"',"'",$tmp);
-                ?>
-               <input type="hidden" name="list" value="<?=$tmp?>">
-                
-              <input type="checkbox" id="<?= $dirs[0] ?>" name="img" value="<?= $dirs[0] ?>">
-              <label for="<?= $dirs[0] ?>"> <?= $dirs[0] ?></label><br>
-              <input type="checkbox" id="<?= $dirs[1] ?>" name="img" value="<?= $dirs[1] ?>">
-              <label for="<?= $dirs[1] ?>"> <?= $dirs[1] ?></label><br>
-              <input type="checkbox" id="<?= $dirs[2] ?>" name="img" value="<?= $dirs[2] ?>">
-              <label for="<?= $dirs[2] ?>"> <?= $dirs[2] ?></label><br>
-              <input type="submit" value="Submit">
-            </form>
-            <?php endif; ?>
-           <!--  <div class="column">
-               <a href="#"><img class="imageS borderimage" src="../<?= $info[0]?>/<?= $dirs[0] ?>"></a> 
-            </div>
-            <div class="column">
-                <a href="#"><img class="imageS borderimage" src="../<?= $info[0]?>/<?= $dirs[1] ?>"></a>
-            </div>
-            <div class="column">
-                <a href="#"><img class="imageS borderimage" src="../<?= $info[0]?>/<?=$dirs[2]?>"></a>
-            </div> -->
 
+
+
+
+
+
+
+ <div class="full-height mouse-here" >
+         <!-- points , level number , question -->
+         <div class="row h-game justify-content-center">
+            <div class="col-md-3 col-lg-2 header-game">
+               <p class="textQ"><strong>Score : <?= $_SESSION["score"] ?></strong></p>
+            </div>
+            <div class="col-md-3 col-lg-2 header-game">
+               <p class="textQ"><strong>Level : <?= $info[1]?></strong></p>
+            </div>
+            <div class="col-md-6 col-lg-7 header-game">
+               <p class="textQ"><strong>Find the similar picture : </strong></p>
+            </div>
          </div>
-       </div>
-       <div class="vl"></div>
-       <div class="col-3" style="margin-top: 5%; margin-left:5%;">
-          <img class="imageQ borderimage laptopQ" src="../<?= $info[0]?>/<?= $correct ?>">           
-       </div>
-    </div>
-  </div>
+         <!-- hr line -->
+         <hr class="hr-game">
+         <!-- main structure -->
+         <div class="row O-game">
+            <div class="col-3 phoneQ" style="margin-top: 5%; margin-left:5%;">
+               <img class="imageQ borderimage" src="../<?= $info[0]?>/<?= $correct ?>">           
+            </div>
+            <hr class="hr-game hrphoneQ" style="border: 2px solid #3D58F3; opacity: 0.5;">
+            <div class="col-8">
+               <form method="POST" action="{{route('normal.submitgame')}}">
+                @csrf 
+               <input type="hidden" name="score" value="<?=$_SESSION['score']?>">
+               <?php $tmp=json_encode($_SESSION['list']);
+                $tmp=str_replace('"',"'",$tmp);
+                ?>
+              <input type="hidden" name="list" value="<?=$tmp?>"> 
+                  <div class="rows photos">
+                     <div class="column">
+                        <button  class="imageS borderimage" type="submit" name="img" value="<?= $dirs[0] ?>" style="width: 100%;height: 300px;padding: 0;"><img src="../<?= $info[0]?>/<?= $dirs[0] ?>" alt="<?= $dirs[0] ?>" style="width: 100%;height: 100%;margin: 0;padding: 0;"></button>
+                     </div>
+                     <div class="column">
+                        <button  class="imageS borderimage" type="submit" name="img" value="<?= $dirs[1] ?>" style="width: 100%;height: 300px;padding: 0;"><img src="../<?= $info[0]?>/<?= $dirs[1] ?>" alt="<?= $dirs[1] ?>" style="width: 100%;height: 100%;margin: 0;padding: 0;"></button>
+                     </div>
+                     <div class="column">
+                        <button  class="imageS borderimage" type="submit" name="img" value="<?= $dirs[2] ?>" style="width: 100%;height: 300px;padding: 0;"><img src="../<?= $info[0]?>/<?= $dirs[2] ?>" alt="<?= $dirs[2] ?>" style="width: 100%;height: 100%;margin: 0;padding: 0;"></button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+            <div class="vl"></div>
+            <div class="col-3" style="margin-top: 5%; margin-left:5%;">
+               <img class="imageQ borderimage laptopQ" src="../<?= $info[0]?>/<?= $correct ?>">           
+            </div>
+         </div>
+      </div>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <?php endif; ?>
   <?php if ($info[1] == 4 || $info[1] == 5): ?>
-    <div class="full-height mouse-here" >
+
+
+
+
+
+
+
+
+<div class="full-height mouse-here" >
     <!-- points , level number , question -->
     <div class="row h-game justify-content-center">
       <div class="col-md-3 col-lg-2 header-game">
@@ -216,44 +218,24 @@ if (count($_SESSION['list'])==9) {
          </div>
          <hr class="hr-game hrphoneQ" style="border: 2px solid #3D58F3; opacity: 0.5;">
        <div class="col-8">
-         <div class="rows photos" >
-            <?php if ($flag==0): ?>
-            <form method="POST" action="{{route('normal.submitgame')}}">
-              @csrf 
+          <form method="POST" action="{{route('normal.submitgame')}}">
+            @csrf 
                <input type="hidden" name="score" value="<?=$_SESSION['score']?>">
                <?php $tmp=json_encode($_SESSION['list']);
                 $tmp=str_replace('"',"'",$tmp);
                 ?>
               <input type="hidden" name="list" value="<?=$tmp?>"> 
-              <input type="checkbox" id="<?= $dirs[0] ?>" name="img" value="<?= $dirs[0] ?>">
-              <label for="<?= $dirs[0] ?>"> <?= $dirs[0] ?></label><br>
-              <input type="checkbox" id="<?= $dirs[1] ?>" name="img" value="<?= $dirs[1] ?>">
-              <label for="<?= $dirs[1] ?>"> <?= $dirs[1] ?></label><br>
-              <input type="submit" value="Submit">
-            </form>
-            <?php endif; ?>
-            <?php if ($flag==1): ?>
-            <form method="POST" action="{{route('normal.submitgame')}}"  >
-              @csrf 
-               <input type="hidden" name="score" value="<?=$_SESSION['score']?>">
-               <?php $tmp=json_encode($_SESSION['list']);
-                $tmp=str_replace('"',"'",$tmp);
-                ?>
-              <input type="hidden" name="list" value="<?=$tmp?>"> 
-              <input type="checkbox" id="<?= $dirs[0] ?>" name="img" value="<?= $dirs[0] ?>" >
-              <label for="<?= $dirs[0] ?>"> <?= $dirs[0] ?></label><br>
-              <input type="checkbox" id="<?= $dirs[1] ?>" name="img" value="<?= $dirs[1] ?>">
-              <label for="<?= $dirs[1] ?>"> <?= $dirs[1] ?></label><br>
-              <input type="submit" value="Submit">
-            </form>
-            <?php endif; ?>
-            <!-- <div class="column" style="margin-right:100px;">
-               <a href="#"><img class="imageS borderimage" src="../datasets/level (4)/New folder/Capture.PNG"></a> 
-            </div>
-            <div class="column">
-                <a href="#"><img class="imageS borderimage" src="../datasets/level (4)/New folder/t.PNG"></a>
-            </div> -->
-         </div>
+
+              <div class="rows photos">
+                 <div class="column columnOfPhone" >
+                  <button  class="imageS borderimage" type="submit" name="img" value="<?= $dirs[0] ?>" style="width: 100%;height: 300px;padding: 0;"><img src="../<?= $info[0]?>/<?= $dirs[0] ?>" alt="<?= $dirs[0] ?>" style="width: 100%;height: 100%;margin: 0;padding: 0;"></button>
+                 </div>
+                 <div class="column">
+                    <button  class="imageS borderimage" type="submit" name="img" value="<?= $dirs[1] ?>" style="width: 100%;height: 300px;padding: 0;"><img src="../<?= $info[0]?>/<?= $dirs[1] ?>" alt="<?= $dirs[1] ?>" style="width: 100%;height: 100%;margin: 0;padding: 0;"></button>
+                 </div>
+              </div>
+           </form>
+
        </div>
        <div class="vl"></div>
        <div class="col-3" style="margin-top: 5%; margin-left:5%;">
@@ -261,19 +243,6 @@ if (count($_SESSION['list'])==9) {
        </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -293,7 +262,7 @@ if (count($_SESSION['list'])==9) {
           <h5 class="mb-3">Pages</h5>
           <ul class="menu-link">
             <li>
-              <a href="index.html" class="">Home</a>
+              <a href="{{ route('welcome') }}" class="">Home</a>
             </li>
             <?php 
           if (Auth::check() && auth()->user()->access == 0) {
@@ -305,10 +274,10 @@ if (count($_SESSION['list'])==9) {
           }
           ?>
             <li>
-              <a href="about.html" class="">About</a>
+              <a href="{{ route('about') }}" class="">About</a>
             </li>
             <li>
-              <a href="contact.html" class="">Contact</a>
+              <a href="{{ route('contact') }}" class="">Contact</a>
             </li>
           </ul>
         </div>
@@ -316,13 +285,13 @@ if (count($_SESSION['list'])==9) {
           <h5 class="mb-3">Guide</h5>
           <ul class="menu-link">
             <li>
-              <a href="DoctorsGuide.html" class="">Doctors</a>
+              <a href="{{ route('DoctorsGuide') }}" class="">Doctors</a>
             </li>
             <li>
-              <a href="PatientsGuide.html" class="">Patient</a>
+              <a href="{{ route('PatientsGuide') }}" class="">Patient</a>
             </li>
             <li>
-              <a href="how to play Guide.html" class="">how to play?</a>
+              <a href="{{ route('howToPlayGuide') }}" class="">how to play?</a>
             </li>
           </ul>
         </div>
