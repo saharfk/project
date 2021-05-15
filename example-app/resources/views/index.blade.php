@@ -44,7 +44,7 @@ use Illuminate\Support\Facades\Auth;
 
   <nav class="navbar navbar-expand-lg navbar-light navbar-floating">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="{{ route('welcome') }}">
         <img src="../public/front/assets/favicon.png" alt="" width="100" height="70">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler"

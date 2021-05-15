@@ -31,7 +31,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark navbar-floating">
   <div class="container">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="{{ route('welcome') }}">
       <img src="../public/front/assets/favicon-light.png" alt="" width="100" height="70">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">

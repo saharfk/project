@@ -2960,10 +2960,10 @@ html, body {
   width: 100%;
   height:100%;
 }
-.photos a img{
+.photos input{
   transition: box-shadow .3s;
 }
-.photos a img:hover {
+.photos input:hover {
     box-shadow: 0 0 20px gray; 
 }
 /* image box */
@@ -2981,7 +2981,7 @@ html, body {
   margin-top: 10%;
 }
 
-.column img {
+.column input {
   margin: 15px;
   vertical-align: middle;
   width: 100%;
@@ -2993,6 +2993,10 @@ html, body {
 .hrphoneQ{
   display: none;
 }
+.columnOfPhone{
+  margin-right:100px;
+  margin-left:90px;
+}
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 800px) {
   .column {
@@ -3002,7 +3006,7 @@ html, body {
   .rows{
     margin:0px;
   }
-  .column img {
+  .column input {
     margin: 15px;
     vertical-align: middle;
     width: 230px;
@@ -3015,7 +3019,7 @@ html, body {
     
   }
   .full-height{
-    height: 1500px;
+    height: 1550px;
   }
   .vl{
     display: none;
@@ -3043,6 +3047,9 @@ html, body {
   }
   .h-game{
     margin-bottom: 30px;
+  }
+  .columnOfPhone{
+    margin: 0px;
   }
 }
 
