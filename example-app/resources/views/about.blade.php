@@ -94,7 +94,7 @@ The Video on this page gives an overview of VEGLECTHERAPY in a couple of minutes
 
           <!-- Video -->
           <div class="text-center py-5">
-            <embed class="embed-video" src="https://www.youtube.com/embed/k1D0_wFlXgo?list=PLl-K7zZEsYLmnJ_FpMOZgyg6XcIGBu2OX">
+            <img class="embed-video" src="../public/argon/img/theme/game.PNG">
           </div>
 
           <p>a pic of the game environment.</p>
