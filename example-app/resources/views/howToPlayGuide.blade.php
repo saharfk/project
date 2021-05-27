@@ -78,66 +78,47 @@
 </div>
 
 <div class="page-section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="card-page">
-          <h3 class="mb-3">instruction :</h3>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card-page">
+                        <h3 class="mb-3">instruction :</h3>
 
-          <p>iOS 10.0.3 includes improvements, bug fixes and additional parental controls for Screen Time.</p>
+                        <ul class="theme-list">
+                            <li class="list-item">Your game has 10 levels.
+                                <br>
+                                <P><b>this game has 2 kinds of question : </b><br>1. you have to find the similar photo
+                                    from the others <br>
+                                    2. you have to solve the puzzle and choose your answer</P></li>
+                            <li class="list-item">if you reload the game in the first level, your questions will be
+                                changed.
+                            </li>
+                            <li class="list-item">if you answer the question right you will gain 10 points else you
+                                won't get any points.
+                            </li>
+                            <li class="list-item">after you finish the game your points will submit to your dashboard
+                                and you can see your last 20 games there
+                            </li>
+                        </ul>
 
-          <h5>Screen Time</h5>
-          <ul class="theme-list">
-            <li class="list-item">New parental controls provide more communication limits over who their children can call, FaceTime, or Message</li>
-            <li class="list-item">Contact list for children lets parents manage the contacts that appear on their children’s devices</li>
-          </ul>
-
-          <h5>Apple News</h5>
-          <ul class="theme-list">
-            <li class="list-item">New layout for Apple News+ stories from The Wall Street Journal and other leading newspapers</li>
-            <li class="list-item">Easily like or dislike stories with a tap</li>
-          </ul>
-
-          <h5>Stocks</h5>
-          <ul class="theme-list">
-            <li class="list-item">Stories from Apple News are now available in Canada in English and French</li>
-            <li class="list-item">Continue reading with links to related stories or more stories from the same publication</li>
-            <li class="list-item">“Breaking” and “Developing” labels for Top Stories</li>
-          </ul>
-
-          <p>This update also includes bug fixes and other improvements. This update:</p>
-          <ul class="theme-list">
-            <li class="list-item">Enables the creation of a new video clip when trimming a video in Photos</li>
-            <li class="list-item">Adds support for NFC, USB, and Lightning FIDO2-compliant security keys in Safari</li>
-            <li class="list-item">Fixes issues in Mail that may prevent downloading new messages</li>
-            <li class="list-item">Addresses an issue that prevented deleting messages in Gmail accounts</li>
-            <li class="list-item">Resolves issues that could cause incorrect characters to display in messages and duplication of sent messages in Exchange accounts</li>
-            <li class="list-item">Fixes an issue where the cursor may not move after long pressing on the space bar</li>
-            <li class="list-item">Addresses an issue that may cause screenshots to appear blurry when sent via Messages</li>
-            <li class="list-item">Resolves an issue where cropping or using Markup on screenshots may not save to Photos</li>
-            <li class="list-item">Fixes an issue where Voice Memos recordings may not be able to be shared with other audio apps</li>
-            <li class="list-item">Addresses an issue where the missed call badge on the Phone app may not clear</li>
-            <li class="list-item">Resolves an issue where the Cellular Data setting may incorrectly show as off</li>
-            <li class="list-item">Fixes an issue that prevented turning off Dark Mode when Smart Invert was enabled</li>
-            <li class="list-item">Addresses an issue where some wireless chargers may charge more slowly than expected</li>
-          </ul>
-
-          <p>For information on the security content of Apple software updates, please visit this website: <a href="https://support.apple.com/kb/HT201222 ">https://support.apple.com/kb/HT201222</a></p>
+                    </div>
+                    <div class="card-page mt-3">
+                        <h3 class="mb-3">how to set levels for patients?</h3>
+                        <h5>steps :</h5>
+                        <ul class="theme-list">
+                            <li class="list-item">Doctors can see patients' names and if they click on the names they
+                                can see the information of the selected patient.
+                            </li>
+                            <li class="list-item">Doctors can see a checkbox on their page, they have to choose at least
+                                2 levels from that checkbox that shows the min and max levels that the doctor diagnosed
+                                for the patient.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-page mt-3">
-          <h3 class="mb-3">how to add levels?</h3>
-          <h5>steps :</h5>
-          <ul class="theme-list">
-            <li class="list-item">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-               Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-            <li class="list-item">you can start playing the game</li>
-            <li class="list-item">for game instructions click <a href="{{ route('howToPlayGuide') }}">here</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
 
 </div>
 
